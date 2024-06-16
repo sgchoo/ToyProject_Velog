@@ -1,0 +1,12 @@
+# Package
+package.json
+package-lock.json
+
+# env
+.env
+
+# Module
+node_modules
+
+# Compile
+dist
