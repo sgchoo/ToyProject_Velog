@@ -7,7 +7,7 @@
  - Auth: JWT, OAuth2(Kakao, Google)(예정)
  - Event Streaming: RabbitMQ(예정)
  - 검색 엔진: Elasticsearch
- - 테스트: Jest(예정), Postman
+ - 테스트: Jest(예정) or Postman
 
 ## 개발 과정
  - 요구사항: Velog 주요 기능 분석
