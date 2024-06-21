@@ -1,10 +1,15 @@
-const express = require('express');
+import express from 'express';
+
+import 'dotenv/config'
+
+import signupContrtoller from './User/signup/signup.controller';
+
 const app = express();
 
-require('dotenv').config();
+app.use(express.json());
 
-app.listen(process.env.PORT, true);
+app.use('/', signupContrtoller);
 
-app.get('/', (req: any, res: any) => {
-    res.send('Hello!')
-})
+app.listen(process.env.PORT, () => {
+    console.log(`run server on http://localhost:${process.env.PORT}`);
+});
