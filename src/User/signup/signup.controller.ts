@@ -18,7 +18,7 @@ router.post('/signup', async (req: Request, res: Response) => {
         if(result)
             res.status(200).send("Sign Up Success");
         else
-            res.status(500).send("Internal Server Err");
+            res.status(400).send("param is wrong");
     }
     catch(err) {
         console.log('err');

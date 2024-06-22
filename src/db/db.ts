@@ -1,4 +1,4 @@
-import mysql from 'mysql2/promise';
+import mysql, { FieldPacket, RowDataPacket } from 'mysql2/promise';
 import 'dotenv/config';
 import {User, Board} from './interfaces';
 import { randomUUID } from 'crypto';
@@ -19,7 +19,22 @@ export const userInfoExecute = async (query: string, params: User): Promise<bool
         await pool.execute(query, [uuid, params.email, params.password, params.nickname]);
         return true;
     } catch (err) {
-        console.error(err);
-        return false;
+        throw new Error(`DB Execute Failed: ${err}`);
     }
 };
+
+export const findUserByEmail = async (param: Partial<User>): Promise<User | null> => {
+    try {
+        const query = "SELECT email FROM User WHERE email = ?";
+        const [results, fields]: [RowDataPacket[], FieldPacket[]] = await pool.execute<RowDataPacket[]>(query, [param.email]);
+
+        if(results.length > 0)
+            return results[0] as User;
+        else
+            return null; 
+
+    }
+    catch(err) {
+        throw new Error(`DB Find Failed: ${err}`);
+    }
+}
