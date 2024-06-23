@@ -25,13 +25,13 @@ export const userInfoExecute = async (query: string, params: User): Promise<bool
 
 export const findUserByEmail = async (param: Partial<User>): Promise<User | null> => {
     try {
-        const query = "SELECT email FROM User WHERE email = ?";
+        const query = "SELECT * FROM User WHERE email = ?";
         const [results, fields]: [RowDataPacket[], FieldPacket[]] = await pool.execute<RowDataPacket[]>(query, [param.email]);
 
         if(results.length > 0)
             return results[0] as User;
         else
-            return null; 
+            return null;
 
     }
     catch(err) {

@@ -1,9 +1,9 @@
 import { userInfoExecute, findUserByEmail } from '../../db/db';
 import { User } from '../../db/interfaces';
-import { SignupInfo } from './interfaces/interfaces';
+import { UserInfo } from '../dtos/types';
 import bcrypt from 'bcrypt';
 
-export const userSignup = async (userInfo: SignupInfo ): Promise<boolean> => {
+export const userSignup = async (userInfo: UserInfo ): Promise<boolean> => {
     const query = "INSERT INTO User (userId, email, password, nickname) VALUE (?, ?, ?, ?)";
     
     const newUser = userInfo as User;
